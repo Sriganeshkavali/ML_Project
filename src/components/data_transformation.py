@@ -87,10 +87,9 @@ class DataTransformation:
                 obj=preprocessing_obj
             )
 
-            return (input_feature_train_arr, target_feature_train_df,train_arr,test_arr,
-                    input_feature_test_arr, target_feature_test_df,
-                    self.data_transformation_config.preprocessor_obj_file_path)
-
+            return train_arr,test_arr
+        
+        
         except Exception as e:
             raise CustomException(e, sys) from e
         
