@@ -3,6 +3,7 @@ import sys
 import pandas as pd
 import numpy as np
 import dill
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import mean_squared_error, r2_score
 from src.logger import logging
 
@@ -44,5 +45,18 @@ def evaluate_model(X_train, y_train, X_test, y_test, models):
             logging.info(f"{model_name} - RMSE: {rmse_test}, R2 Score: {r2_test}")
 
         return model_report
+    except Exception as e:
+        raise CustomException(e, sys) from e
+    
+def load_object(file_path):
+    """
+    Load an object from a file using pickle.
+    """
+    try:
+        logging.info(f"Loading object from {file_path}")
+        with open(file_path, 'rb') as file_obj:
+            obj = dill.load(file_obj)
+        logging.info(f"Object loaded from {file_path}")
+        return obj
     except Exception as e:
         raise CustomException(e, sys) from e

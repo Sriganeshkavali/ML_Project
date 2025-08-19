@@ -49,6 +49,8 @@ class ModelTrainer:
                 'CatBoostRegressor': CatBoostRegressor(verbose=0)
             }
 
+            
+
             model_report = evaluate_model(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,models=models)
             
             best_model_name = min(model_report, key=lambda x: model_report[x]['rmse_test'])
